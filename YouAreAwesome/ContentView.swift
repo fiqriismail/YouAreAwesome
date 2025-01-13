@@ -8,34 +8,35 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var message = "I am a programmer"
+    @State private var message = ""
+    @State private var imageName = ""
+    @State private var toggle = false
     var body: some View {
         VStack {
             Spacer()
-            Image(systemName: "swift")
+            Image(imageName)
                 .resizable()
                 .scaledToFit()
-                .foregroundStyle(.orange)
-                .frame(width: 200, height: 200)
+                .clipShape(RoundedRectangle(cornerRadius: 30))
+                .shadow(radius: 30)
+            
             Text(message)
                 .font(.largeTitle)
-                .fontWeight(.ultraLight)
-                .foregroundStyle(.black)
+                .fontWeight(.black)
+                .foregroundStyle(.red)
             
             Spacer()
-            HStack {
-                Button("Awesome") {
-                    message = "Awesome!"
-                }
+            
+            Button("Press Me") {
                 
-                Button("Great") {
-                    message = "Great!"
-                }
-                
+                message = toggle ? "You Are Great!" : "You Are Awesome!"
+                imageName = toggle ? "image0" : "image1"
+              
+                toggle.toggle()
             }
             .buttonStyle(.borderedProminent)
             .font(.title2)
-            .tint(.orange)
+
             
         }
         .padding()
